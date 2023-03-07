@@ -1,6 +1,10 @@
 # DFRobot_GNSS
 - [中文版](./README_CN.md)
 
+Global Navigation Satellite Systems (GNSS) provide critical timing and positioning functions for device operations.
+This Gravity: GNSS positioning module from DFRobot supports both single and multiple systems positioning. It is capable of quick delivery of position data like longitude, latitude, altitude and time. Compared with traditional single GPS positioning, the multi-system combination embraces higher precision and faster speed thanks to the increased number of visible and available satellites, which ensures stable and accurate performance even in complex urban environments.
+
+With I2C and UART data outputs, the GNSS positioning module works well with main-controllers like Arduino, ESP32, and Raspberry Pi. It is applicable to outdoor positioning scenarios such as vehicle navigation, handheld positioning tracker, item tracking and weather station
 
 ![效果图](../../resources/images/TEL0157.jpg)
 
@@ -19,6 +23,9 @@
 
 ## Summary
 
+Provide an python library for the GNSS module with the following features:
+Retrieval of GNSS data
+Retrieval of raw GNSS data.
 
 ## Installation
 1. Download the library to Raspberry Pi first before use.
@@ -27,7 +34,7 @@
 sudo git clone https://github.com/DFRobot/DFRobot_GNSS
 ```
 
-1. Open and run the routine. To execute a routine demo_x.py, enter python demo_x.py in the command line. For example, to execute the routine i2c.py, you need to enter:
+1. Open and run the routine. To execute a routine demo_x.py, enter python demo_x.py in the command line. For example, to execute the routine get_gnss.py, you need to enter:
 
 ```
 python get_gnss.py

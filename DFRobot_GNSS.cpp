@@ -280,21 +280,6 @@ int16_t DFRobot_GNSS_I2C::readReg(uint8_t reg,uint8_t *data,uint8_t len)
   return 0;
 }
 
-// #ifdef ESP_PLATFORM
-//   DFRobot_GNSS_UART::DFRobot_GNSS_UART(HardwareSerial *hSerial, uint16_t Baud)
-//   {
-//     this->_serial = hSerial;
-//     this->_baud = Baud;
-//     uartI2CFlag = UART_FLAG;
-//   }
-// #else
-//   DFRobot_GNSS_UART::DFRobot_GNSS_UART(SoftwareSerial *sSerial, uint16_t Baud)
-//   {
-//     this->_serial = sSerial;
-//     this->_baud = Baud;
-//     uartI2CFlag = UART_FLAG;
-//   }
-// #endif
 
 #if defined(ARDUINO_AVR_UNO) || defined(ESP8266)
   DFRobot_GNSS_UART::DFRobot_GNSS_UART(SoftwareSerial *sSerial, uint16_t Baud)
