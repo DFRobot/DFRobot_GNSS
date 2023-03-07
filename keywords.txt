@@ -1,0 +1,41 @@
+#######################################
+# Syntax Coloring DFRobot_GNSS
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+DFRobot_GNSS_I2C	KEYWORD1
+DFRobot_GNSS_UART	KEYWORD1
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+begin	KEYWORD2
+getUTC	KEYWORD2
+getDate	KEYWORD2
+getLat	KEYWORD2
+getLon	KEYWORD2
+getNumSatUsed	KEYWORD2
+getAlt	KEYWORD2
+getSog	KEYWORD2
+getCog	KEYWORD2
+setGnss	KEYWORD2
+getGnssMode	KEYWORD2
+setCallback	KEYWORD2
+enablePower	KEYWORD2
+disablePower	KEYWORD2
+setRgbOn	KEYWORD2
+setRgbOff	KEYWORD2
+eGnssMode_t	KEYWORD2
+sLonLat_t	KEYWORD2
+sTim_t	KEYWORD2
+
+
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+
+GNSS_DEVICE_ADDR	LITERAL1
