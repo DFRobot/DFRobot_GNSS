@@ -81,13 +81,13 @@ public:
   #define I2C_LAT_X_24 9
   #define I2C_LAT_X_16 10
   #define I2C_LAT_X_8  11
-  #define I2C_LAT_DIS  12
+  #define I2C_LON_DIS  12
   #define I2C_LON_1 13
   #define I2C_LON_2 14
   #define I2C_LON_X_24 15
   #define I2C_LON_X_16 16
   #define I2C_LON_X_8  17
-  #define I2C_LON_DIS  18
+  #define I2C_LAT_DIS  18
   #define I2C_USE_STAR 19
   #define I2C_ALT_H 20
   #define I2C_ALT_L 21
