@@ -1,15 +1,13 @@
-# DFRobot_GNSS
+# DFRobot_3DFace
 - [English Version](./README.md)
 
-这是一款支持多卫星系统，可多系统联合定位和单系统独立定位的GNSS定位模块。能快速获取经纬度、时间、高度等数据。多系统联合定位相比于传统单一的GPS定位，可见和可用卫星数目大幅增加，能够提高定位精度和定位速度，即使是在复杂城市环境中也能实现稳定的高精度定位。
+这是一款内置自研嵌入式系统3D深度还原算法、3D人脸识别算法及多模态活体防范算法,能够有效保障用户信息及解锁安全性，在99%通过率的前提下，能够做到低于百万分之一的误识率。同时使用多模态活体防伪算法，能有效屏蔽照片、视频及各种头模和假人的攻击。
 
-Gravity: GNSS定位模块，具有I2C和UART两种数据输出类型，兼容Arduino、ESP32、树莓派等主流的主控设备。可用于车载导航、手持定位、物品追踪、气象站等室外定位场景。
+![正反面svg效果图](/resources/images/xxx.jpg) 
 
-![正反面svg效果图](/resources/images/TEL0157.jpg) 
+## 产品链接(https://www.dfrobot.com.cn)
 
-## 产品链接(https://www.dfrobot.com.cn/goods-3652.html)
-
-    SKU：TEL0157
+    SKU：xxx
 
 ## 目录
 
@@ -22,161 +20,111 @@ Gravity: GNSS定位模块，具有I2C和UART两种数据输出类型，兼容Ard
 
 ## 概述
 
-提供一个Arduino库给GNSS模块，此库具有以下功能：
-  获取 gnss的数据
-  获取 gnss的原始数据
+提供一个Arduino库给人脸识别模块，此库具有以下功能：
+  直视，注册人脸，识别人脸
+  直视，向上下左右转头，注册人脸，识别人脸
 
 ## 库安装
 这里提供两种使用本库的方法：<br>
-1.打开Arduino IDE,在状态栏中的Tools--->Manager Libraries 搜索"DFRobot_GNSS"并安装本库.<br>
+1.打开Arduino IDE,在状态栏中的Tools--->Manager Libraries 搜索"DFRobot_3DFace"并安装本库.<br>
 2.首先下载库文件,将其粘贴到\Arduino\libraries目录中,然后打开examples文件夹并在该文件夹中运行演示.<br>
 
 ## 方法
 
 ```C++
-/**
- * @fn getUTC
- * @brief 获取utc 标准时间
- * @return sTim_t 类型，表示返回的时分秒
- * @retval sTim_t.hour 时
- * @retval sTim_t.minute 分
- * @retval sTim_t.second 秒
- */
-  sTim_t getUTC(void);
+  /**
+   * @fn setStandby
+   * @brief 设置为待机模式，此模式下才正常驱动模块
+   * @return true or false
+   */
+  bool setStandby(void);
 
-/**
- * @fn getDate
- * @brief 获取年月日等日期
- * @return sTim_t 类型，表示返回的年月日
- * @retval sTim_t.year 年
- * @retval sTim_t.month 月
- * @retval sTim_t.day 日
- */
-  sTim_t getDate(void);
+  /**
+   * @fn delFaceID
+   * @brief 删除 指定的人脸id
+   * @param number 
+   * @return true or false
+   */
+  bool delFaceID(uint16_t number);
 
-/**
- * @fn getLat
- * @brief 获取纬度
- * @return sLonLat_t 类型，表示返回的经纬度
- * @retval sLonLat_t.latDD   纬度 度（0-90）
- * @retval sLonLat_t.latMM   纬度 分后0-2位小数
- * @retval sLonLat_t.latMMMMM 纬度 分后2-7位小数
- * @retval sLonLat_t.latitude 包含7位小数的纬度值
- * @retval sLonLat_t.latDirection 纬度的方向
- */
-  sLonLat_t getLat(void);
+  /**
+   * @fn delAllFaceID
+   * @brief 删除所有的人脸信息
+   * @return true or false
+   */
+  bool delAllFaceID(void);
 
-/**
- * @fn getLon
- * @brief 获取经度
- * @return sLonLat_t 类型，表示返回的经度
- * @retval sLonLat_t.lonDDD  经度 度（0-90）
- * @retval sLonLat_t.lonMM   经度 分后0-2位小数
- * @retval sLonLat_t.lonMMMMM 经度 分后2-7位小数
- * @retval sLonLat_t.lonitude 包含7位小数的经度值
- * @retval sLonLat_t.lonDirection 经度的方向
- */
-  sLonLat_t getLon(void);
+  /**
+   * @fn faceMatching
+   * @brief 人脸匹配
+   * @return sFaceMatching_t 匹配的结果
+   */
+  sFaceMatching_t faceMatching(void);
 
-/**
- * @fn getNumSatUsed
- * @brief 获取使用的卫星数
- * @return uint8_t 类型，表示使用的卫星数
- */
-  uint8_t getNumSatUsed(void);
+  /**
+   * @fn faceRegistration
+   * @brief 单项注册人脸
+   * @param mode 是否是管理员模式
+   * @param name 注册的名字
+   * @param direction 注册的方向，单项注册一定是直视注册
+   * @param regType 单项注册
+   * @param repetition 是否重复注册
+   * @param timerout 超时时间
+   * @return sFaceReg_t 注册的结果
+   */
+  sFaceReg_t faceRegistration(char* name, uint8_t mode=ADMIN, eAngleView_t direction=eDirectView, uint8_t regType=ONE_REG, bool repetition=true, uint8_t timerout=0x0A);
 
-/**
- * @fn getAlt
- * @brief 获取大地的高度
- * @return double 类型，表示大地的高度
- */
-  double getAlt(void);
+  /**
+   * @fn directRegistration
+   * @brief 直视注册
+   * @param name 此函数不使用
+   * @param timerout 超时时间
+   * @return sFaceReg_t 注册的结果
+   */
+  sFaceReg_t directRegistration(char* name=NULL, uint8_t timerout=0x0A);
 
-/**
- * @fn getSog
- * @brief 获取对地速度
- * @return speed 浮点型数据 （单位 节）
- */
-  double getSog(void);
+  /**
+   * @fn lookUpRegistration
+   * @brief 向上看注册人脸
+   * @param name 此函数不使用
+   * @param timerout 超时时间
+   * @return sFaceReg_t 注册的结果
+   */
+  sFaceReg_t lookUpRegistration(char* name=NULL, uint8_t timerout=0x0A);
 
-/**
- * @fn getCog
- * @brief 获取对地真航向
- * @return 浮点型数据 （单位 度）
- */
-  double getCog(void);
+  /**
+   * @fn lookDownRegistration
+   * @brief 向下看注册人脸
+   * @param name 此函数不使用
+   * @param timerout 超时时间
+   * @return sFaceReg_t 注册的结果
+   */
+  sFaceReg_t lookDownRegistration(char* name=NULL, uint8_t timerout=0x0A);
 
-/**
- * @fn setGnss
- * @brief 设置星系
- * @param mode
- * @n   eGPS              使用 gps
- * @n   eBeiDou           使用 beidou
- * @n   eGPS_BeiDou       使用 gps + beidou
- * @n   eGLONASS          使用 glonass
- * @n   eGPS_GLONASS      使用 gps + glonass
- * @n   eBeiDou_GLONASS   使用 beidou +glonass
- * @n   eGPS_BeiDou_GLONASS 使用 gps + beidou + glonass
- * @return NULL
- */
-  void setGnss(eGnssMode_t mode);
+  /**
+   * @fn turnLeftRegistration
+   * @brief 向左看注册人脸
+   * @param name 此函数不使用
+   * @param timerout 超时时间
+   * @return sFaceReg_t 注册的结果
+   */
+  sFaceReg_t turnLeftRegistration(char* name=NULL, uint8_t timerout=0x0A);
 
-/**
- * @fn getGnssMode
- * @brief 获取使用的星系模式
- * @return mode
- * @retval 1 使用 gps
- * @retval 2 使用 beidou
- * @retval 3 使用 gps + beidou
- * @retval 4 使用 glonass
- * @retval 5 使用 gps + glonass
- * @retval 6 使用 beidou +glonass
- * @retval 7 使用 gps + beidou + glonass
- */
-  uint8_t getGnssMode(void);
+  /**
+   * @fn turnRightRegistration
+   * @brief 向右看注册人脸
+   * @param name 注册人脸的名字
+   * @param timerout 超时时间
+   * @return sFaceReg_t 注册的结果
+   */
+  sFaceReg_t turnRightRegistration(char* name=NULL, uint8_t timerout=0x0A);
 
-/**
- * @fn getAllGnss
- * @brief 获取gnss的数据,回调接收
- * @return null
- */
-  void getAllGnss(void);
-
-/**
- * @fn enablePower
- * @brief 使能gnss的电源
- * @return null
- */
-void enablePower(void);
-
-/**
- * @fn disablePower
- * @brief 失能gnss的电源
- * @return null
- */
-void disablePower(void);
-
-/**
- * @fn setRgbOn
- * @brief 开启 rgb 灯
- * @return null
- */
-void setRgbOn(void);
-
-/**
- * @fn setRgbOn
- * @brief 关闭 rgb 灯
- * @return null
- */
-void setRgbOff(void);
-
-/**
- * @fn setCallback
- * @brief 设置回调函数类型
- * @param  * call 函数名
- * @return null
- */
-  void setCallback(void (*call)(char *, uint8_t));
+  /**
+   * @fn getFaceMessage
+   * @brief 获取人脸的信息
+   * @return sUserData_t 人脸id ,获取结果
+   */
+  sUserData_t getFaceMessage(void);
 ```
 
 ## 兼容性
@@ -193,9 +141,8 @@ Micro:bit          |      √       | nonsupport uart |             |
 
 
 ## 历史
-- 2022/8/15 - V0.0.1 版本
-- 2022/10/26 - V1.0.0 版本
+- 2024/03/08 - V1.0.0 版本
 
 ## 创作者
 
-Written by ZhixinLiu(zhixin.liu@dfrobot.com), 2022. (Welcome to our website)
+Written by ZhixinLiu(zhixin.liu@dfrobot.com), 2024. (Welcome to our website)
