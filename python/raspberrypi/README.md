@@ -1,12 +1,16 @@
-# DFRobot_3DFace
+# DFRobot_GNSS
 - [中文版](./README_CN.md)
-This is a built-in self-developed embedded system 3D depth restoration algorithm, 3D face recognition algorithm and multi-modal live prevention algorithm, which can effectively protect user information and unlock security, under the premise of 99% pass rate, can achieve less than one million error rate. At the same time, the multi-modal live anti-counterfeiting algorithm can effectively shield the attacks of photos, videos and various head models and dummies.
 
-![效果图](../../resources/images/face.jpg)
+Global Navigation Satellite Systems (GNSS) provide critical timing and positioning functions for device operations.
+This Gravity: GNSS positioning module from DFRobot supports both single and multiple systems positioning. It is capable of quick delivery of position data like longitude, latitude, altitude and time. Compared with traditional single GPS positioning, the multi-system combination embraces higher precision and faster speed thanks to the increased number of visible and available satellites, which ensures stable and accurate performance even in complex urban environments.
 
-## Product Link(https://www.dfrobot.com)
+With I2C and UART data outputs, the GNSS positioning module works well with main-controllers like Arduino, ESP32, and Raspberry Pi. It is applicable to outdoor positioning scenarios such as vehicle navigation, handheld positioning tracker, item tracking and weather station
 
-    SKU：xxx
+![效果图](../../resources/images/TEL0157.jpg)
+
+## Product Link(https://www.dfrobot.com/product-2651.html)
+
+    SKU：TEL0157
 
 ## Table of Contents
 
@@ -19,118 +23,133 @@ This is a built-in self-developed embedded system 3D depth restoration algorithm
 
 ## Summary
 
-Provides an Arduino library that has the following features:
-  Face recognition routine
+Provide an python library for the GNSS module with the following features:
+Retrieval of GNSS data
+Retrieval of raw GNSS data.
 
 ## Installation
 1. Download the library to Raspberry Pi first before use.
 
 ```
-sudo git clone https://github.com/DFRobot/DFRobot_3DFace
+sudo git clone https://github.com/DFRobot/DFRobot_GNSS
 ```
 
-1. Open and run the routine. To execute a routine demo_x.py, enter python demo_x.py in the command line. For example, to execute the routine get_mm wavewave.py, you need to enter:
+1. Open and run the routine. To execute a routine demo_x.py, enter python demo_x.py in the command line. For example, to execute the routine get_gnss.py, you need to enter:
 
 ```
-python face_recognition.py
+python get_gnss.py
 or 
-python2 face_recognition.py
+python2 get_gnss.py
 or 
-python3 face_recognition.py
+python3 get_gnss.py
 ```
 
 ## Methods
 
 ```python
+  '''!
+    @brief Init sensor 
+  '''
   def begin(self):
-    '''!
-      @brief begin
-      @return True 
-    '''
 
-  def set_standby(self):
-    '''!
-      @brief Set it to standby mode. 
-      @n     The driver module can work properly only in this mode
-      @return True or False
-    '''
+  '''!
+    @brief Get date information, year, month, day 
+    @return struct_utc_tim type, represents the returned year, month, day 
+  '''
+  def get_date(self):
 
-  def delete_face_id(self, number):
-    '''!
-      @brief Deletes the specified face id
-      @param number delete face id
-      @return True or False
-    '''
+  '''!
+    @brief Get time information, hour, minute, second 
+    @return struct_utc_tim type, represents the returned hour, minute, and second 
+  '''
+  def get_utc(self):
 
-  def delete_all_face_id(self):
-    '''!
-      @brief Delete all facial information
-      @return True or False
-    '''
-    
-  def direct_registration(self, name="", timerout=0x0a):
-    '''!
-      @brief Look direct at face registration
-      @param name must is null
-      @param timerout
-      @return struct_face_reg
-    '''
+  '''!
+    @brief Get latitude 
+    @return struct_lat_lon type, represents the returned latitude 
+  '''
+  def get_lat(self):
 
-  def look_up_registration(self, name="", timerout=0x0a):
-    '''!
-      @brief Look up at face registration
-      @param name must is null
-      @param timerout
-      @return struct_face_reg
-    '''
+  '''!
+    @brief Get longitude 
+    @return struct_lat_lon type, represents the returned longitude
+  '''
+  def get_lon(self):
+
+  '''!
+    @brief Get the number of the used satellite  
+    @return The number of the used satellite 
+  '''
+  def get_num_sta_used(self):
+
+  '''!
+    @brief Get altitude 
+    @return double type, represents the altitude 
+  '''
+  def get_alt(self):
+
+  '''!
+    @brief Get course over ground 
+    @return Float data(unit, degree) 
+  '''
+  def get_cog(self):
+
+  '''!
+    @brief Get speed over ground 
+    @return speed Float data(unit, knot) 
+  '''
+  def get_sog(self):
+
+  '''!
+    @brief Get the used GNSS mode 
+    @return mode
+    @retval 1 gps
+    @retval 2 beidou
+    @retval 3 gps + beidou
+    @retval 4 glonass
+    @retval 5 gps + glonass
+    @retval 6 beidou +glonass
+    @retval 7 gps + beidou + glonass
+  '''
+  def get_gnss_mode(self):
+
+  '''!
+    @brief Set GNSS to be used 
+    @param mode
+    @n   GPS              use gps
+    @n   BeiDou           use beidou
+    @n   GPS_BeiDou       use gps + beidou
+    @n   GLONASS          use glonass
+    @n   GPS_GLONASS      use gps + glonass
+    @n   BeiDou_GLONASS   use beidou +glonass
+    @n   GPS_BeiDou_GLONASS use gps + beidou + glonass
+  '''
+  def set_gnss(self, mode):
+
+  '''!
+    @brief Get GNSS data 
+  '''
+  def get_all_gnss(self):
+
+  '''!
+    @brief enable gnss power
+  '''
+  def enable_power(self):
+
+  '''!
+    @brief disable gnss power, the GNSS data will not be refreshed this time 
+  '''
+  def disable_power(self):
   
-  def look_down_registration(self, name="", timerout=0x0a):
-    '''!
-      @brief Look down at face registration
-      @param name must is null
-      @param timerout
-      @return struct_face_reg
-    '''
-
-  def turn_left_registration(self, name="", timerout=0x0a):
-    '''!
-      @brief Look left at face registration
-      @param name must is null
-      @param timerout
-      @return struct_face_reg
-    '''
-
-  def turn_right_registration(self, name="", timerout=0x0a):
-    '''!
-      @brief Look right at face registration
-      @param name register name
-      @param timerout
-      @return struct_face_reg
-    '''
-
-  def face_registration(self, name, mode=ADMIN, direction=DIRECT_VIEW, reg_type=ONE_REG ,repetition=1 ,timerout=0X0A):
-    '''!
-      @brief Single registered face
-      @param mode = ADMIN
-      @param direction = DIRECT_VIEW
-      @param reg_type = ONE_REG
-      @param repetition = 1
-      @param name register name
-      @param timerout
-      @return struct_face_reg
-    '''
-
-  def face_matching(self):
-    '''!
-      @brief face_matching
-      @return match
-    '''
-
-  def get_face_message(self):
-    '''!
-      @brief get_face_message
-      @return struct_result_data
-    '''
+  '''!
+    @brief Turn rgb on 
+  '''
+  def rgb_on(self):
+  
+  '''!
+    @brief Turn rgb off
+  '''
+  def rgb_off(self):
 ```
 
 ## Compatibility
@@ -153,8 +172,9 @@ python3 face_recognition.py
 
 ## History
 
-- 2024/03/06 - Version 1.0.0 released.
+- 2022/04/02 - Version 0.0.1 released.
+- 2022/10/26 - Version 1.0.0 released.
 
 ## Credits
 
-Written by ZhixinLiu(zhixin.liu@dfrobot.com), 2024. (Welcome to our website)
+Written by ZhixinLiu(zhixin.liu@dfrobot.com), 2022. (Welcome to our website)
