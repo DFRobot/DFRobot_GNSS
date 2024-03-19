@@ -1,6 +1,6 @@
  /*!
   * @file  getAllGNSS.ino
-  * @brief read all gnss data
+  * @brief read all gnss data and prints it to the serial console via a callback
   * @copyright Copyright (c) 2010 DFRobot Co.Ltd (http://www.dfrobot.com)
   * @license The MIT License (MIT)
   * @author ZhixinLiu(zhixin.liu@dfrobot.com)
@@ -19,7 +19,7 @@ void callback(char *data ,uint8_t len)
   delay(1);
 }
 
-#define I2C_COMMUNICATION  //use I2C for communication, but use the serial port for communication if the line of codes were masked
+#define I2C_COMMUNICATION  //leave this defined to use i2C, to use UART comment out this line
 
 #ifdef  I2C_COMMUNICATION
   DFRobot_GNSS_I2C gnss(&Wire ,GNSS_DEVICE_ADDR);
@@ -28,8 +28,8 @@ void callback(char *data ,uint8_t len)
  *    board   |             MCU                | Leonardo/Mega2560/M0 |    UNO    | ESP8266 | ESP32 |  microbit  |   m0  |
  *     VCC    |            3.3V/5V             |        VCC           |    VCC    |   VCC   |  VCC  |     X      |  vcc  |
  *     GND    |              GND               |        GND           |    GND    |   GND   |  GND  |     X      |  gnd  |
- *     RX     |              TX                |     Serial1 TX1      |     5     |   5/D6  |  D2   |     X      |  tx1  |
- *     TX     |              RX                |     Serial1 RX1      |     4     |   4/D7  |  D3   |     X      |  rx1  |
+ *     TX     |              TX                |     Serial1 TX1      |     5     |   5/D6  |  D2   |     X      |  tx1  |
+ *     RX     |              RX                |     Serial1 RX1      |     4     |   4/D7  |  D3   |     X      |  rx1  |
  * ----------------------------------------------------------------------------------------------------------------------*/
 /* Baud rate cannot be changed  */
   #if defined(ARDUINO_AVR_UNO) || defined(ESP8266)
@@ -46,7 +46,7 @@ void setup()
 {
   Serial.begin(115200);
   while(!gnss.begin()){
-    Serial.println("NO Deivces !");
+    Serial.println("No Devices!");
     delay(1000);
   }
   gnss.enablePower();      // Enable gnss power
