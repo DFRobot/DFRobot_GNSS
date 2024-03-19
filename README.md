@@ -14,12 +14,15 @@ With I2C and UART data outputs, the GNSS positioning module works well with main
 
 ## Table of Contents
 
-* [Summary](#Summary)
-* [Installation](#Installation)
-* [Methods](#Methods)
-* [Compatibility](#Compatibility)
-* [History](#History)
-* [Credits](#Credits)
+- [DFRobot\_GNSS](#dfrobot_gnss)
+  - [Product Link(https://www.dfrobot.com/product-2651.html)](#product-linkhttpswwwdfrobotcomproduct-2651html)
+  - [Table of Contents](#table-of-contents)
+  - [Summary](#summary)
+  - [Installation](#installation)
+  - [Methods](#methods)
+  - [Compatibility](#compatibility)
+  - [History](#history)
+  - [Credits](#credits)
 
 ## Summary
 
@@ -184,7 +187,7 @@ void setRgbOff(void);
 
 ## Compatibility
 
-MCU                | Work Well    |   Work Wrong    | Untested    | Remarks
+MCU                | Supported    | Unsupported     | Untested    | Remarks
 ------------------ | :----------: | :-------------: | :---------: | :----:
 Arduino Uno        |      √       |                 |             |
 Arduino MEGA2560   |      √       |                 |             |
