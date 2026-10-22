@@ -199,6 +199,7 @@ Micro:bit          |      √       | nonsupport uart |             |
 
 - 2022/04/02 - Version 0.0.1 released.
 - 2022/10/26 - Version 1.0.0 released.
+- 2026/10/22 - Version 1.0.1 released. Fixed typos and the ESP32 wiring notes in the README and examples.
 
 ## Credits
 

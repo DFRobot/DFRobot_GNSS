@@ -4,8 +4,8 @@
   * @copyright Copyright (c) 2010 DFRobot Co.Ltd (http://www.dfrobot.com)
   * @license The MIT License (MIT)
   * @author ZhixinLiu(zhixin.liu@dfrobot.com)
-  * @version V1.0
-  * @date 2023-03-07
+  * @version V1.0.1
+  * @date 2026-10-22
   * @url https://github.com/dfrobot/DFRobot_GNSS
   */
 
