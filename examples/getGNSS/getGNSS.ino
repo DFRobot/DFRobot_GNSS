@@ -11,7 +11,8 @@
 
 #include "DFRobot_GNSS.h"
 
-#define I2C_COMMUNICATION  //use I2C for communication, but use the serial port for communication if the line of codes were masked
+//Make sure the switch on the board has been set to the correct position!
+#define I2C_COMMUNICATION  //leave this defined to use I2C, to use UART comment out this line
 
 #ifdef  I2C_COMMUNICATION
   DFRobot_GNSS_I2C gnss(&Wire ,GNSS_DEVICE_ADDR);
@@ -20,8 +21,8 @@
  *    board   |             MCU                | Leonardo/Mega2560/M0 |    UNO    | ESP8266 | ESP32 |  microbit  |   m0  |
  *     VCC    |            3.3V/5V             |        VCC           |    VCC    |   VCC   |  VCC  |     X      |  vcc  |
  *     GND    |              GND               |        GND           |    GND    |   GND   |  GND  |     X      |  gnd  |
- *     RX     |              TX                |     Serial1 TX1      |     5     |   5/D6  |  D2   |     X      |  tx1  |
- *     TX     |              RX                |     Serial1 RX1      |     4     |   4/D7  |  D3   |     X      |  rx1  |
+ *     RX     |              TX                |     Serial1 TX1      |     5     |   5/D6  |  D3   |     X      |  tx1  |
+ *     TX     |              RX                |     Serial1 RX1      |     4     |   4/D7  |  D2   |     X      |  rx1  |
  * ----------------------------------------------------------------------------------------------------------------------*/
 /* Baud rate cannot be changed */
   #if defined(ARDUINO_AVR_UNO) || defined(ESP8266)
@@ -38,7 +39,7 @@ void setup()
 {
   Serial.begin(115200);
   while(!gnss.begin()){
-    Serial.println("NO Deivces !");
+    Serial.println("No Devices!");
     delay(1000);
   }
 

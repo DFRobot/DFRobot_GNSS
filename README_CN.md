@@ -181,7 +181,7 @@ void setRgbOff(void);
 
 ## 兼容性
 
-MCU                | Work Well    |   Work Wrong    | Untested    | Remarks
+MCU                | Supported    | Unsupported     | Untested    | Remarks
 ------------------ | :----------: | :-------------: | :---------: | :----:
 Arduino Uno        |      √       |                 |             |
 Arduino MEGA2560   |      √       |                 |             |
