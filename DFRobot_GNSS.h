@@ -287,7 +287,7 @@ private:
 
 class DFRobot_GNSS_I2C:public DFRobot_GNSS{
 public:
-  DFRobot_GNSS_I2C(TwoWire *pWire=&Wire, uint8_t addr = 0x75);
+  DFRobot_GNSS_I2C(TwoWire *pWire=&Wire, uint8_t addr = GNSS_DEVICE_ADDR);
   bool begin(void);
 protected:
   virtual void writeReg(uint8_t reg, uint8_t *data, uint8_t len);
