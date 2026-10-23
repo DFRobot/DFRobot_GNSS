@@ -196,6 +196,7 @@ Micro:bit          |      √       | nonsupport uart |             |
 - 2022/8/15 - V0.0.1 版本
 - 2022/10/26 - V1.0.0 版本
 - 2026/10/22 - V1.0.1 版本，修正 README 和例程中的错别字及 ESP32 接线说明
+- 2026/10/23 - V1.0.2 版本，修正 DFRobot_GNSS_I2C 的默认 I2C 地址（0x75 -> GNSS_DEVICE_ADDR）。
 
 ## 创作者
 

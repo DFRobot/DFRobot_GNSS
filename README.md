@@ -200,6 +200,7 @@ Micro:bit          |      √       | nonsupport uart |             |
 - 2022/04/02 - Version 0.0.1 released.
 - 2022/10/26 - Version 1.0.0 released.
 - 2026/10/22 - Version 1.0.1 released. Fixed typos and the ESP32 wiring notes in the README and examples.
+- 2026/10/23 - Version 1.0.2 released. Fixed the default I2C address of DFRobot_GNSS_I2C (0x75 -> GNSS_DEVICE_ADDR).
 
 ## Credits
 
